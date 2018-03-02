@@ -43,7 +43,7 @@ namespace Ptlk_OPC
         public override void Uninstall(IDictionary savedState)
         {
             // Unregister our DLL
-            System.Diagnostics.Process.Start(regasmPath, $"\"{componentPath}\" /tlb /u").WaitForExit();
+            System.Diagnostics.Process.Start(regasmPath, $"\"{componentPath}\" /tlb /codebase /u").WaitForExit();
 
             // Delete type library
             FileInfo tlbfile = new FileInfo(componentPath.Replace(".dll", ".tlb"));

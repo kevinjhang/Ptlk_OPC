@@ -51,6 +51,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="OPC_XMLTests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPC_XMLTests.Designer.cs">
+      <DependentUpon>OPC_XMLTests.cs</DependentUpon>
+    </Compile>
     <Compile Include="OPCTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +65,11 @@
       <Project>{cf7e0555-ac4a-4683-9673-d6a9670b6caa}</Project>
       <Name>Ptlk_OPC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OPC_XMLTests.resx">
+      <DependentUpon>OPC_XMLTests.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
