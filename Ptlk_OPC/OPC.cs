@@ -169,6 +169,8 @@ namespace Ptlk_OPC
         {
             if (ProgID == null || Node == null) return;
 
+            if (m_OPC != null) m_OPC.Disconnect();
+
             if (ProgID.Contains("XML"))
             {
                 m_OPC = new OPC_XML();
@@ -287,8 +289,8 @@ namespace Ptlk_OPC
         private string[] m_MonitorItemID;
         private string m_ProgID;
         private string m_Node;
-        private int m_UpdateRate;
-        private int m_PingTimeout;
-        private int m_ConnectRate;
+        private int m_UpdateRate = 1000;
+        private int m_PingTimeout = 5000;
+        private int m_ConnectRate = 30000;
     }
 }

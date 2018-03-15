@@ -32,9 +32,9 @@ namespace Ptlk_OPC
         private Timer Timer;
         private string m_ProgID = "ICONICS.ModbusOPC.3";
         private string m_Node = "127.0.0.1";
-        private int m_UpdateRate = 1000;
-        private int m_PingTimeout = 5000;
-        private int m_ConnectRate = 30000;
+        private int m_UpdateRate;
+        private int m_PingTimeout;
+        private int m_ConnectRate;
         private bool m_IsConnected;
 
         public string ProgID { get => m_ProgID; set => m_ProgID = value; }
@@ -473,7 +473,7 @@ namespace Ptlk_OPC
             {
                 IsPingSuccess = false;
                 OPCServer1 = null;
-                Log(Node + "Ping:" + pex.Message);
+                Log("Node:" + Node + ", PingTimeout:" + PingTimeout + " Ping:" + pex.Message);
             }
             catch (ExternalException eex)
             {

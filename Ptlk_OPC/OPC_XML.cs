@@ -27,14 +27,14 @@ namespace Ptlk_OPC
         private Timer Timer2;
         private string m_ProgID = "vdir/OPC_XML_DA_WrapperService";
         private string m_Node = "127.0.0.1";
-        private int m_UpdateRate = 1000;
-        private int m_ConnectRate = 30000;
+        private int m_UpdateRate;
+        private int m_ConnectRate;
         private bool m_IsConnected;
 
         public string ProgID { get => m_ProgID; set => m_ProgID = value; }
         public string Node { get => m_Node; set => m_Node = value; }
         public int UpdateRate { get => m_UpdateRate; set => m_UpdateRate = value; }
-        public int PingTimeout { get => 0; set { } }
+        public int PingTimeout { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int ConnectRate { get => m_ConnectRate; set => m_ConnectRate = value; }
         public bool IsConnected { get => m_IsConnected; private set => m_IsConnected = value; }
 
