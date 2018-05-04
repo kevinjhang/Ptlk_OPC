@@ -12,7 +12,7 @@ namespace Ptlk_OPC.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -27,9 +27,9 @@ namespace Ptlk_OPC.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1/vdir/OPC_XML_DA_WrapperService.asmx")]
-        public string Ptlk_OPC_NET_OPC_XML_DA_WrapperService_OPC_XML_DA_WrapperService {
+        public string Ptlk_OPC_NET_OPC_XML_DA_WrapperService {
             get {
-                return ((string)(this["Ptlk_OPC_NET_OPC_XML_DA_WrapperService_OPC_XML_DA_WrapperService"]));
+                return ((string)(this["Ptlk_OPC_NET_OPC_XML_DA_WrapperService"]));
             }
         }
     }

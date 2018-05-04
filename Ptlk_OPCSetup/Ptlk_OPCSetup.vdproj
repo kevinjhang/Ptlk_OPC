@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E4F51533B277AB5DB6330FC07AC49DFD"
+        "OwnerKey" = "8:_64C05E852EF04F31982101A86C799C57"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_64C05E852EF04F31982101A86C799C57"
         "MsmSig" = "8:_UNDEFINED"
@@ -116,6 +122,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E4F51533B277AB5DB6330FC07AC49DFD"
+            {
+            "SourcePath" = "8:Ptlk_OPC_NET.tlb"
+            "TargetName" = "8:Ptlk_OPC_NET.tlb"
+            "Tag" = "8:"
+            "Folder" = "8:_CF66730E096743DD9846B6C22C2E6A6E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -162,14 +188,14 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ptlk_OPC"
         "ProductCode" = "8:{347F83D7-6700-482D-8414-B053F85C793C}"
-        "PackageCode" = "8:{53537F5D-D346-40EE-A108-A2DD4FDE62D1}"
+        "PackageCode" = "8:{3CF961C0-D7C4-4C24-B5C4-D0045758A29C}"
         "UpgradeCode" = "8:{979D0160-69EE-4A91-AADF-CB81ECCD92C7}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1"
         "Manufacturer" = "8:PTLK"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

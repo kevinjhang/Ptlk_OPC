@@ -63,7 +63,7 @@ namespace Ptlk_OPC.OPC_XML_DA {
         
         /// <remarks/>
         public OPC_XML_DA_WrapperService() {
-            this.Url = global::Ptlk_OPC.Properties.Settings.Default.Ptlk_OPC_NET_OPC_XML_DA_WrapperService_OPC_XML_DA_WrapperService;
+            this.Url = global::Ptlk_OPC.Properties.Settings.Default.Ptlk_OPC_NET_OPC_XML_DA_WrapperService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

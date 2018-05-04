@@ -161,6 +161,54 @@ namespace Ptlk_OPC
             }
         }
 
+        public void SetGroupItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
+        {
+            if (m_OPC == null)
+            {
+                m_GroupItemID = ItemIDs;
+            }
+            else
+            {
+                m_OPC.SetGroupItemID(ref ItemIDs);
+            }
+        }
+
+        public void SetMonitorItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
+        {
+            if (m_OPC == null)
+            {
+                m_MonitorItemID = ItemIDs;
+            }
+            else
+            {
+                m_OPC.SetMonitorItemID(ref ItemIDs);
+            }
+        }
+
+        public void StartMonitor()
+        {
+            if (m_OPC == null)
+            {
+                m_IsMonitor = true;
+            }
+            else
+            {
+                m_OPC.StartMonitor();
+            }
+        }
+
+        public void StopMonitor()
+        {
+            if (m_OPC == null)
+            {
+                m_IsMonitor = false;
+            }
+            else
+            {
+                m_OPC.StopMonitor();
+            }
+        }
+
         public OPC()
         {
         }
@@ -189,6 +237,7 @@ namespace Ptlk_OPC
             m_OPC.EventLog += m_EventLog;
             m_OPC.SetGroupItemID(ref m_GroupItemID);
             m_OPC.SetMonitorItemID(ref m_MonitorItemID);
+            if (m_IsMonitor) m_OPC.StartMonitor();
             m_OPC.Connect();
         }
 
@@ -207,18 +256,6 @@ namespace Ptlk_OPC
             m_OPC?.SetValue(ItemID, Value);
         }
 
-        public void SetGroupItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
-        {
-            if (m_OPC == null)
-            {
-                m_GroupItemID = ItemIDs;
-            }
-            else
-            {
-                m_OPC.SetGroupItemID(ref ItemIDs);
-            }
-        }
-
         public string[] GetGroupValue()
         {
             return m_OPC?.GetGroupValue();
@@ -227,28 +264,6 @@ namespace Ptlk_OPC
         public void SetGroupValue([MarshalAs(UnmanagedType.SafeArray)] ref string[] Values)
         {
             m_OPC?.SetGroupValue(ref Values);
-        }
-
-        public void SetMonitorItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
-        {
-            if (m_OPC == null)
-            {
-                m_MonitorItemID = ItemIDs;
-            }
-            else
-            {
-                m_OPC.SetMonitorItemID(ref ItemIDs);
-            }
-        }
-
-        public void StartMonitor()
-        {
-            m_OPC?.StartMonitor();
-        }
-
-        public void StopMonitor()
-        {
-            m_OPC?.StopMonitor();
         }
 
         public void Disconnect()
@@ -287,6 +302,7 @@ namespace Ptlk_OPC
         private event EventLogHandler m_EventLog;
         private string[] m_GroupItemID;
         private string[] m_MonitorItemID;
+        private bool m_IsMonitor;
         private string m_ProgID;
         private string m_Node;
         private int m_UpdateRate = 1000;

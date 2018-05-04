@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Ptlk_OPC.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Ptlk_OPC_NET_OPC_XML_DA_WrapperService_OPC_XML_DA_WrapperService" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Ptlk_OPC_NET_OPC_XML_DA_WrapperService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://127.0.0.1/vdir/OPC_XML_DA_WrapperService.asmx</Value>
     </Setting>
   </Settings>

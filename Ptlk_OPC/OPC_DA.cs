@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Ptlk_OPC
 {
-    [ComVisible(true)]
+    [ComVisible(false)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComSourceInterfaces(typeof(IOPCEvents))]
     [Guid("F19DA3AA-D4A3-4BE9-BECA-BC1BCA5ACCA2")]
@@ -30,8 +30,8 @@ namespace Ptlk_OPC
         private bool IsMonitor;
         private bool IsPingSuccess;
         private Timer Timer;
-        private string m_ProgID = "ICONICS.ModbusOPC.3";
-        private string m_Node = "127.0.0.1";
+        private string m_ProgID;    //"ICONICS.ModbusOPC.3"
+        private string m_Node;      //"127.0.0.1"
         private int m_UpdateRate;
         private int m_PingTimeout;
         private int m_ConnectRate;
@@ -172,7 +172,8 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("SetValue:" + ex.Message + " ItemID:" + ItemID + "\r\n" + ex.StackTrace);
+                Log("SetValue:" + ex.Message + " ItemID:" + ItemID + " Value:" + Value + "\r\n" + ex.StackTrace);
+                throw;
             }
         }
 
@@ -206,7 +207,7 @@ namespace Ptlk_OPC
                     {
                         if (IsChangeGroupItemID)
                         {
-                            if(RemoveItemID(OPCGroupG, ServerHandlesG))
+                            if (RemoveItemID(OPCGroupG, ServerHandlesG))
                             {
                                 IsChangeGroupItemID = false;
                             }
@@ -271,7 +272,7 @@ namespace Ptlk_OPC
                     {
                         if (IsChangeGroupItemID)
                         {
-                            if(RemoveItemID(OPCGroupG, ServerHandlesG))
+                            if (RemoveItemID(OPCGroupG, ServerHandlesG))
                             {
                                 IsChangeGroupItemID = false;
                             }
@@ -291,6 +292,7 @@ namespace Ptlk_OPC
             {
                 CheckConnected();
                 Log("SetGroupValue:" + ex.Message + "\r\n" + ex.StackTrace);
+                throw;
             }
         }
 
@@ -317,7 +319,7 @@ namespace Ptlk_OPC
                     {
                         if (IsChangeMonitorItemID)
                         {
-                            if(RemoveItemID(OPCGroupM, ServerHandlesM))
+                            if (RemoveItemID(OPCGroupM, ServerHandlesM))
                             {
                                 IsChangeMonitorItemID = false;
                             }
