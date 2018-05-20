@@ -13,9 +13,9 @@ OPC node (ex: 127.0.0.1, DCOM or http://127.0.0.1/vdir, XML)
 ### int UpdateRate
 Monitor update rate
 ### int PingTimeout
-Check connection use
+Use when check connection
 ### int ConnectRate
-Keep connection use
+Use when keep connection
 ### bool IsConnected
 Connection status
 
