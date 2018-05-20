@@ -1,0 +1,7 @@
+
+*.msi
+*.msm
+Ptlk_OPC/bin/x86/Release/Ptlk_OPC_NET.dll
+Ptlk_OPC/bin/x86/Release/Ptlk_OPC_NET.pdb
+Ptlk_OPC/bin/x86/Release/Ptlk_OPC_NET.XmlSerializers.dll
+.vs/Ptlk_OPC/v15/.suo

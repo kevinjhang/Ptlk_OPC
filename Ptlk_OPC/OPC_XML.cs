@@ -412,7 +412,8 @@ namespace Ptlk_OPC
                     ReturnItemTime = true
                 };
 
-                OPCServer1.SubscriptionPolledRefresh(options, new[] { ServerHandlesM }, DateTime.MinValue, false, 0, false, out string[] invalidHandles, out var replyList, out _, out _);
+                OPCServer1.SubscriptionPolledRefresh(options, new[] { ServerHandlesM }, DateTime.MinValue
+                    , false, 0, false, out string[] invalidHandles, out var replyList, out _, out _);
 
                 Publish(replyList);
             }
@@ -430,11 +431,13 @@ namespace Ptlk_OPC
 
                 if (branches?[0] == null)
                 {
-                    OPCServer1.Browse(null, null, null, "", "", ref cp, int.MaxValue, browseFilter.branch, null, null, false, false, false, out element, out _, out _);
+                    OPCServer1.Browse(null, null, null, "", "", ref cp, int.MaxValue, browseFilter.branch
+                        , null, null, false, false, false, out element, out _, out _);
                 }
                 else
                 {
-                    OPCServer1.Browse(null, null, null, "", string.Join(".", branches), ref cp, int.MaxValue, browseFilter.branch, null, null, false, false, false, out element, out _, out _);
+                    OPCServer1.Browse(null, null, null, "", string.Join(".", branches), ref cp, int.MaxValue, browseFilter.branch
+                        , null, null, false, false, false, out element, out _, out _);
                 }
                 int brancheCount = element.Length;
                 string[] branches2 = new string[0];
@@ -442,13 +445,15 @@ namespace Ptlk_OPC
                 {
                     if (branches?[0] == null)
                     {
-                        OPCServer1.Browse(null, null, null, "", "", ref cp, int.MaxValue, browseFilter.branch, null, null, false, false, false, out element, out _, out _);
+                        OPCServer1.Browse(null, null, null, "", "", ref cp, int.MaxValue, browseFilter.branch
+                            , null, null, false, false, false, out element, out _, out _);
                         branches2 = new string[1];
                         branches2[0] = element[i].Name;
                     }
                     else
                     {
-                        OPCServer1.Browse(null, null, null, "", string.Join(".", branches), ref cp, int.MaxValue, browseFilter.branch, null, null, false, false, false, out element, out _, out _);
+                        OPCServer1.Browse(null, null, null, "", string.Join(".", branches), ref cp, int.MaxValue, browseFilter.branch
+                            , null, null, false, false, false, out element, out _, out _);
                         Array.Resize(ref branches2, branches.Length + 1);
                         for (int j = 0; j < branches.Length; j++)
                         {
@@ -461,7 +466,8 @@ namespace Ptlk_OPC
                     result.Append("\",\"BrancheArray\":");
                     result.Append(GetTreeItemByBranches(ref branches2));
                     result.Append(",\"LeafArray\":[");
-                    OPCServer1.Browse(null, null, null, "", string.Join(".", branches2), ref cp, int.MaxValue, browseFilter.item, null, null, false, false, true, out element, out _, out _);
+                    OPCServer1.Browse(null, null, null, "", string.Join(".", branches2), ref cp, int.MaxValue, browseFilter.item
+                        , null, null, false, false, true, out element, out _, out _);
                     for (int j = 0; j < element.Length; j++)
                     {
                         result.Append("{\"Name\":\"");
