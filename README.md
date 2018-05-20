@@ -1,13 +1,13 @@
 # Ptlk_OPC - OPC DA Read/Write Tools
-Bridge Pattern by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll | x86)
+Bridge Pattern by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
 
 Support .NET and VB6 Environment
 
 ## Properties
 ### string ProgID
-OPC ProgID ex: ICONICS.ModbusOPC.3(DCOM) or OPC_XML_DA_WrapperService.asmx(XML)
+OPC progID (ex: ICONICS.ModbusOPC.3, DCOM or OPC_XML_DA_WrapperService.asmx, XML)
 ### string Node
-OPC Node ex: 127.0.0.1(DCOM) or http://127.0.0.1/vdir(XML)
+OPC node (ex: 127.0.0.1, DCOM or http://127.0.0.1/vdir, XML)
 ### int UpdateRate
 Monitor update rate
 ### int PingTimeout
@@ -19,27 +19,27 @@ Connection status
 
 ## Functions (All are sync)
 ### void Connect()
-Connect OPC Server
+Connect OPC server
 ### void GetTree()
-Get OPC Tree(json)
+Get OPC tree(json)
 ### string GetValue(string ItemID)
-Get Value
+Get value
 ### void SetValue(string ItemID, string Value)
-Set Value
+Set value
 ### void SetGroupItemID(string[] ItemIDs)
-Set Group ItemID
+Set group itemID
 ### string[] GetGroupValue()
-Get Group Value
+Get group value
 ### void SetGroupValue(string[] Values)
-Set Group Value
+Set group value
 ### void SetMonitorItemID(string[] ItemIDs)
-Set Monitor ItemID
+Set monitor itemID
 ### void StartMonitor()
-Start Monitor
+Start monitor
 ### void StopMonitor()
-Stop Monitor
+Stop monitor
 ### void Disconnect()
-Disconnect OPC Server
+Disconnect OPC server
 
 ## Events
 ### DataChange(int NumItems, Array ClientHandles, Array ItemValues, Array TimeStamps)
