@@ -1,6 +1,6 @@
 # Ptlk_OPC - OPC DA Read/Write Tools
 
-## Propertys
+## Properties
 ### string ProgID
 ### string Node
 ### int UpdateRate 
