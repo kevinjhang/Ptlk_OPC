@@ -23,11 +23,13 @@ namespace Ptlk_OPC.Tests
                 Node = "127.0.0.1"
             };
             OPC.Connect();
+
             string tree = OPC.GetTree();
             if (tree == "[]")
             {
                 Assert.Fail();
             }
+
             OPC.Disconnect();
         }
 
@@ -40,16 +42,18 @@ namespace Ptlk_OPC.Tests
                 Node = "127.0.0.1"
             };
             OPC.Connect();
+
             string writeValue = "0";
-            OPC.SetValue("DO16.DO_0", writeValue);
+            OPC.SetValue("T.A", writeValue);
 
             Thread.Sleep(500);
 
-            string readValue = OPC.GetValue("DO16.DO_0");
+            string readValue = OPC.GetValue("T.A");
             if (readValue != writeValue)
             {
                 Assert.Fail();
             }
+
             OPC.Disconnect();
         }
 
@@ -62,25 +66,22 @@ namespace Ptlk_OPC.Tests
                 Node = "127.0.0.1"
             };
             OPC.Connect();
-            string[] s1 = new string[] { "DO16.DO_0", "DO16.DO_1", "DO16.DO_2" };
-            OPC.SetGroupItemID(ref s1);
 
-            string[] s2 = new string[] { "8", "8", "8" };
-            OPC.SetGroupValue(ref s2);
+            string[] items = new string[] { "T.A", "T.A1", "T.A2" };
+            string[] resetValue = new string[] { "0", "0", "0" };
+            string[] writeValue = new string[] { "1", "2", "3" };
 
-            s1 = new string[] { "DO16.DO_0", "DO16.DO_1", "DO16.DO_2" };
-            OPC.SetGroupItemID(ref s1);
+            OPC.SetGroupItemID(ref items);
+            OPC.SetGroupValue(ref resetValue);
+            OPC.SetGroupValue(ref writeValue);
 
-            s2 = new string[] { "0", "1", "2" };
-            OPC.SetGroupValue(ref s2);
-
-            Thread.Sleep(500);
+            Thread.Sleep(50);
 
             string[] readValue = OPC.GetGroupValue();
 
             for (int i = 0; i < readValue.Length; i++)
             {
-                if (readValue[i] != i.ToString())
+                if (readValue[i] != writeValue[i].ToString())
                 {
                     Assert.Fail();
                 }
@@ -96,15 +97,17 @@ namespace Ptlk_OPC.Tests
         {
             IOPC OPC = new OPC
             {
-                ProgID = "OPC_XML_DA_WrapperService",
-                Node = "http://127.0.0.1/vdir/OPC_XML_DA_WrapperService.asmx"
+                ProgID = "OPC_XML_DA_WrapperService.asmx",
+                Node = "http://127.0.0.1/vdir"
             };
             OPC.Connect();
+
             string tree = OPC.GetTree();
             if (tree == "[]")
             {
                 Assert.Fail();
             }
+
             OPC.Disconnect();
         }
 
@@ -113,20 +116,22 @@ namespace Ptlk_OPC.Tests
         {
             IOPC OPC = new OPC
             {
-                ProgID = "OPC_XML_DA_WrapperService",
-                Node = "http://127.0.0.1/vdir/OPC_XML_DA_WrapperService.asmx"
+                ProgID = "OPC_XML_DA_WrapperService.asmx",
+                Node = "http://127.0.0.1/vdir"
             };
             OPC.Connect();
+
             string writeValue = "0";
-            OPC.SetValue("DO16.DO_0", writeValue);
+            OPC.SetValue("T.A", writeValue);
 
             Thread.Sleep(500);
 
-            string readValue = OPC.GetValue("DO16.DO_0");
+            string readValue = OPC.GetValue("T.A");
             if (readValue != writeValue)
             {
                 Assert.Fail();
             }
+
             OPC.Disconnect();
         }
 
@@ -135,45 +140,32 @@ namespace Ptlk_OPC.Tests
         {
             IOPC OPC = new OPC
             {
-                ProgID = "OPC_XML_DA_WrapperService",
-                Node = "http://127.0.0.1/vdir/OPC_XML_DA_WrapperService.asmx"
+                ProgID = "OPC_XML_DA_WrapperService.asmx",
+                Node = "http://127.0.0.1/vdir"
             };
             OPC.Connect();
-            string[] s1 = new string[] { "DO16.DO_0", "DO16.DO_1", "DO16.DO_2" };
-            OPC.SetGroupItemID(ref s1);
 
-            string[] s2 = new string[] { "8", "8", "8" };
-            OPC.SetGroupValue(ref s2);
+            string[] items = new string[] { "T.A", "T.A1", "T.A2" };
+            string[] resetValue = new string[] { "0", "0", "0" };
+            string[] writeValue = new string[] { "1", "2", "3" };
 
-            s1 = new string[] { "DO16.DO_0", "DO16.DO_1", "DO16.DO_2" };
-            OPC.SetGroupItemID(ref s1);
+            OPC.SetGroupItemID(ref items);
+            OPC.SetGroupValue(ref resetValue);
+            OPC.SetGroupValue(ref writeValue);
 
-            s2 = new string[] { "0", "1", "2" };
-            OPC.SetGroupValue(ref s2);
-
-            Thread.Sleep(500);
+            Thread.Sleep(50);
 
             string[] readValue = OPC.GetGroupValue();
 
             for (int i = 0; i < readValue.Length; i++)
             {
-                if (readValue[i] != i.ToString())
+                if (readValue[i] != writeValue[i].ToString())
                 {
                     Assert.Fail();
                 }
             }
 
             OPC.Disconnect();
-        }
-        #endregion
-
-        #region OPC_XML Subscribe
-        [TestMethod()]
-        public void Subscribe_XMLTest()
-        {
-            var formTests = new OPC_XMLTests();
-            formTests.Show();
-            Application.Run(formTests);
         }
         #endregion
     }
