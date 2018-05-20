@@ -35,3 +35,4 @@ D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Release\Ptlk_OPC.csproj.CoreCompileInputs.ca
 D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Release\Ptlk_OPC_NET.dll
 D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Release\Ptlk_OPC_NET.pdb
 D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Release\Ptlk_OPC_NET.XmlSerializers.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Release\Ptlk_OPC.csprojAssemblyReference.cache

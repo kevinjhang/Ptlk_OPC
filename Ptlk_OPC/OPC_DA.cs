@@ -30,19 +30,13 @@ namespace Ptlk_OPC
         private bool IsMonitor;
         private bool IsPingSuccess;
         private Timer Timer;
-        private string m_ProgID;    //"ICONICS.ModbusOPC.3"
-        private string m_Node;      //"127.0.0.1"
-        private int m_UpdateRate;
-        private int m_PingTimeout;
-        private int m_ConnectRate;
-        private bool m_IsConnected;
 
-        public string ProgID { get => m_ProgID; set => m_ProgID = value; }
-        public string Node { get => m_Node; set => m_Node = value; }
-        public int UpdateRate { get => m_UpdateRate; set => m_UpdateRate = value; }
-        public int PingTimeout { get => m_PingTimeout; set => m_PingTimeout = value; }
-        public int ConnectRate { get => m_ConnectRate; set => m_ConnectRate = value; }
-        public bool IsConnected { get => m_IsConnected; private set => m_IsConnected = value; }
+        public string ProgID { get; set; } // ICONICS.ModbusOPC.3
+        public string Node { get; set; }   // 127.0.0.1
+        public int UpdateRate { get; set; }
+        public int PingTimeout { get; set; }
+        public int ConnectRate { get; set; }
+        public bool IsConnected { get; private set; }
 
         public OPC_DA()
         {
@@ -82,7 +76,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("GetTreeItem:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(GetTree)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
 
             return result;
@@ -90,7 +84,7 @@ namespace Ptlk_OPC
 
         public string GetValue(string ItemID)
         {
-            string result = "*";
+            string result = null;
 
             if (string.IsNullOrEmpty(ItemID)) return result;
 
@@ -109,7 +103,10 @@ namespace Ptlk_OPC
                         }
                         catch
                         {
-                            if (OPCItem1 == null) OPCItem1 = OPCGroup1.OPCItems.AddItem(ItemID, 0);
+                            if (OPCItem1 == null)
+                            {
+                                OPCItem1 = OPCGroup1.OPCItems.AddItem(ItemID, 0);
+                            } 
                         }
                         finally
                         {
@@ -125,7 +122,7 @@ namespace Ptlk_OPC
                                     }
                                     else
                                     {
-                                        result = "*";
+                                        result = null;
                                     }
                                 }
                             }
@@ -136,7 +133,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("GetValue:" + ex.Message + " ItemID:" + ItemID + "\r\n" + ex.StackTrace);
+                Log($"{nameof(GetValue)}: {ex.Message} {nameof(ItemID)}: {ItemID}{Environment.NewLine}{ex.StackTrace}");
             }
             return result;
         }
@@ -172,7 +169,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("SetValue:" + ex.Message + " ItemID:" + ItemID + " Value:" + Value + "\r\n" + ex.StackTrace);
+                Log($"{nameof(SetValue)}: {ex.Message} {nameof(ItemID)}: {ItemID} {nameof(Value)}: {Value}{Environment.NewLine}{ex.StackTrace}");
                 throw;
             }
         }
@@ -196,7 +193,7 @@ namespace Ptlk_OPC
             {
                 for (int i = 0; i <= result.Length - 1; i++)
                 {
-                    result[i] = "*";
+                    result[i] = null;
                 }
 
                 if (!IsConnected) return result;
@@ -238,7 +235,7 @@ namespace Ptlk_OPC
                                             }
                                             else
                                             {
-                                                result[i] = "*";
+                                                result[i] = null;
                                             }
                                         }
                                     }
@@ -251,7 +248,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("GetGroupValue:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(GetGroupValue)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
             return result;
         }
@@ -291,8 +288,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("SetGroupValue:" + ex.Message + "\r\n" + ex.StackTrace);
-                throw;
+                Log($"{nameof(SetGroupValue)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
         }
 
@@ -336,7 +332,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("StartMonitor:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(StartMonitor)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
         }
 
@@ -360,7 +356,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("StopMonitor:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(StopMonitor)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
         }
 
@@ -376,10 +372,9 @@ namespace Ptlk_OPC
                 {
                     if (OPCServer1 != null)
                     {
-                        Log("Disconnect:" + Node + " " + ProgID);
                         OPCServer1.OPCGroups.RemoveAll();
                         OPCServer1.Disconnect();
-                        Log("Disconnected:" + Node + " " + ProgID);
+                        Log($"{nameof(Disconnect)}ed: {Node} {ProgID}");
                     }
                 }
 
@@ -392,7 +387,7 @@ namespace Ptlk_OPC
             }
             catch (Exception ex)
             {
-                Log("Disconnect:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(Disconnect)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
         }
 
@@ -417,14 +412,13 @@ namespace Ptlk_OPC
                 CheckConnected();
                 if (IsPingSuccess && !IsConnected)
                 {
-                    Log("Connect:" + Node + " " + ProgID);
                     OPCServer1 = new OPCServer();
                     OPCServer1.Connect(ProgID, Node);
+                    Log($"{nameof(Connect)}ed: {Node} {ProgID}");
                     OPCGroup1 = OPCServer1.OPCGroups.Add();
                     OPCGroupG = OPCServer1.OPCGroups.Add();
                     OPCGroupM = OPCServer1.OPCGroups.Add();
                     OPCGroupM.DataChange += OPCGroupM_DataChange;
-                    Log("Connected:" + Node + " " + ProgID);
                     IsConnected = true;
                     if (IsMonitor) StartMonitor();
                 }
@@ -432,7 +426,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 OPCServer1 = null;
-                Log("_Connect:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(Connect)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
             }
         }
 
@@ -458,33 +452,29 @@ namespace Ptlk_OPC
                         {
                             result = true;
                         }
-                        else
-                        {
-                            Log("ServerState:" + Node + " " + ProgID + " " + GetStateString(serverState));
-                        }
                     }
                 }
                 else
                 {
                     IsPingSuccess = false;
                     OPCServer1 = null;
-                    Log("Ping:" + Node + " " + ping);
+                    Log($"{nameof(PingNode)}: {Node} {ping}");
                 }
             }
             catch (PingException pex)
             {
                 IsPingSuccess = false;
                 OPCServer1 = null;
-                Log("Node:" + Node + ", PingTimeout:" + PingTimeout + " Ping:" + pex.Message);
+                Log($"{nameof(CheckConnected)}: {pex.Message} {nameof(Node)}: {Node} {nameof(PingTimeout)}{PingTimeout}");
             }
             catch (ExternalException eex)
             {
                 OPCServer1 = null;
-                Log("External:" + eex.Message);
+                Log($"{nameof(CheckConnected)}: {eex.Message} {Environment.NewLine}{eex.StackTrace}");
             }
             catch (Exception ex)
             {
-                Log("CheckConnected:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(CheckConnected)}: {ex.Message} {Environment.NewLine}{ex.StackTrace}");
             }
             IsConnected = result;
         }
@@ -511,7 +501,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("AddItemID:" + ex.Message + "\r\n" + "ItemID:" + ItemID[i] + "\r\n" + ex.StackTrace);
+                Log($"{nameof(AddItemID)}: {ex.Message} {nameof(ItemID)}: {ItemID}{Environment.NewLine}{ex.StackTrace}");
             }
             return false;
         }
@@ -541,7 +531,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log("RemoveItemID:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(RemoveItemID)}: {ex.Message} {Environment.NewLine}{ex.StackTrace}");
             }
             return false;
         }
@@ -642,7 +632,7 @@ namespace Ptlk_OPC
             }
             catch (Exception ex)
             {
-                Log("GetTreeItemByBranches:" + ex.Message + "\r\n" + ex.StackTrace);
+                Log($"{nameof(GetTreeItemByBranches)}: {ex.Message} {Environment.NewLine}{ex.StackTrace}");
                 result.Clear();
                 result.Append("[]");
             }
@@ -708,7 +698,7 @@ namespace Ptlk_OPC
             {
                 if (IsBadQuality(Qualities.GetValue(i)))
                 {
-                    ItemValues.SetValue("*", i);
+                    ItemValues.SetValue(null, i);
                 }
             }
             DataChange?.Invoke(NumItems, ClientHandles, ItemValues, TimeStamps);
