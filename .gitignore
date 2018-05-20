@@ -35,11 +35,10 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-*.msm
-*.msi
-.vs/Ptlk_OPC/DesignTimeBuild/.dtbcache
-.vs/Ptlk_OPC/v15/.suo
-*.lock
-*.ide
-*.ide-shm
-*.ide-wal
+
+# VS files #
+######################
+.vs/
+bin/
+obj/
+Release/
