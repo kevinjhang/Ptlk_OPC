@@ -30,3 +30,15 @@ C:\Users\user\Desktop\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Interop.OPCAutomation.dll
 C:\Users\user\Desktop\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC.csproj.ResolveComReference.cache
 C:\Users\user\Desktop\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC_NET.dll
 C:\Users\user\Desktop\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC_NET.pdb
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\opccomn_ps.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\OPCDAAuto.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\opcproxy.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\Ptlk_OPC_NET.dll.config
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\Ptlk_OPC_NET.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\bin\x86\Debug\Ptlk_OPC_NET.pdb
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC.csprojAssemblyReference.cache
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Interop.OPCAutomation.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC.csproj.ResolveComReference.cache
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC.csproj.CoreCompileInputs.cache
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC_NET.dll
+D:\GitHub\Ptlk_OPC\Ptlk_OPC\obj\x86\Debug\Ptlk_OPC_NET.pdb
