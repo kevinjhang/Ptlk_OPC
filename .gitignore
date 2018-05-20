@@ -39,3 +39,7 @@ Thumbs.db
 *.msi
 .vs/Ptlk_OPC/DesignTimeBuild/.dtbcache
 .vs/Ptlk_OPC/v15/.suo
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
