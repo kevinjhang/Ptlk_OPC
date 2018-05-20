@@ -42,7 +42,7 @@ Stop Monitor
 Disconnect OPC Server
 
 ## Events
-### DataChange(int NumItems, object ClientHandles, object ItemValues, object TimeStamps)
+### DataChange(int NumItems, Array ClientHandles, Array ItemValues, Array TimeStamps)
 Monitor callback
 ### EventLog(string Message)
 Log callback
