@@ -37,3 +37,5 @@ ehthumbs.db
 Thumbs.db
 *.msm
 *.msi
+.vs/Ptlk_OPC/DesignTimeBuild/.dtbcache
+.vs/Ptlk_OPC/v15/.suo
