@@ -3,6 +3,8 @@ Bridge Pattern by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
 
 Support .NET and VB6 Environment
 
+(Warning: This class is stateful and may not apply to large architectures)
+
 ## Properties
 ### string ProgID
 OPC progID (ex: ICONICS.ModbusOPC.3, DCOM or OPC_XML_DA_WrapperService.asmx, XML)
