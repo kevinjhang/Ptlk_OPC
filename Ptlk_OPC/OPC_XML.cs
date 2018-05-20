@@ -27,7 +27,7 @@ namespace Ptlk_OPC
         private Timer Timer2;
 
         public string ProgID { get; set; } // OPC_XML_DA_WrapperService.asmx
-        public string Node { get; set; }   // http://127.0.0.1/vdir/
+        public string Node { get; set; }   // http://127.0.0.1/vdir
         public int UpdateRate { get; set; }
         public int PingTimeout { get; set; }
         public int ConnectRate { get; set; }
