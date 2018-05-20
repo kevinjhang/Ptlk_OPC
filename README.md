@@ -1,5 +1,5 @@
 # Ptlk_OPC - OPC DA Read/Write Tools
-Bridge Pattern by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
+Facade by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
 
 Support .NET and VB6 Environment
 
