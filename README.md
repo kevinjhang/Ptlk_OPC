@@ -3,7 +3,7 @@ Facade by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
 
 Support .NET and VB6 Environment
 
-(Warning: This class is stateful and may not apply to large architectures)
+(Warning: This class is stateful and may not apply to inheritance architecture)
 
 ## Properties
 ### string ProgID
