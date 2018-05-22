@@ -254,8 +254,8 @@ namespace Ptlk_OPC
         #endregion
 
         private IOPC m_OPC;
-        private List<DataChangeHandler> m_DataChange;
-        private List<EventLogHandler> m_EventLog;
+        private List<DataChangeHandler> m_DataChange = new List<DataChangeHandler>();
+        private List<EventLogHandler> m_EventLog = new List<EventLogHandler>();
         private string[] m_GroupItemID;
         private string[] m_MonitorItemID;
         private bool m_IsMonitor;
