@@ -1,7 +1,9 @@
 # Ptlk_OPC - OPC DA Read/Write Tools
-Bridge Pattern by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
+Facade by OPC DA Automation Wrapper 2.02 (OPCDAAuto.dll, x86)
 
 Support .NET and VB6 Environment
+
+(Warning: This class is stateful and may not apply to inheritance architecture)
 
 ## Properties
 ### string ProgID
@@ -11,9 +13,9 @@ OPC node (ex: 127.0.0.1, DCOM or http://127.0.0.1/vdir, XML)
 ### int UpdateRate
 Monitor update rate
 ### int PingTimeout
-Check connection use
+Use when check connection
 ### int ConnectRate
-Keep connection use
+Use when keep connection
 ### bool IsConnected
 Connection status
 
