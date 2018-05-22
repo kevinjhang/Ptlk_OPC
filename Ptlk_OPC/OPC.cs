@@ -1,5 +1,6 @@
 ﻿using OPCAutomation;
 using System;
+using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,25 +18,19 @@ namespace Ptlk_OPC
         {
             add
             {
-                if (m_OPC == null)
-                {
-                    m_DataChange += value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.DataChange += value;
                 }
+                m_DataChange.Add(value);
             }
             remove
             {
-                if (m_OPC == null)
-                {
-                    m_DataChange -= value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.DataChange -= value;
                 }
+                m_DataChange.Remove(value);
             }
         }
 
@@ -43,54 +38,42 @@ namespace Ptlk_OPC
         {
             add
             {
-                if (m_OPC == null)
-                {
-                    m_EventLog += value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.EventLog += value;
                 }
+                m_EventLog.Add(value);
             }
             remove
             {
-                if (m_OPC == null)
-                {
-                    m_EventLog -= value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.EventLog -= value;
                 }
+                m_EventLog.Remove(value);
             }
         }
 
-        public string ProgID { get => m_ProgID; set => m_ProgID = value; }
-        public string Node { get => m_Node; set => m_Node = value; }
+        public string ProgID { get; set; }
+        public string Node { get; set; }
 
         public int UpdateRate
         {
             get
             {
-                if (m_OPC == null)
-                {
-                    return m_UpdateRate;
-                }
-                else
+                if (m_OPC != null)
                 {
                     return m_OPC.UpdateRate;
                 }
+                return m_UpdateRate;
             }
             set
             {
-                if (m_OPC == null)
-                {
-                    m_UpdateRate = value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.UpdateRate = value;
                 }
+                m_UpdateRate = value;
             }
         }
 
@@ -98,25 +81,19 @@ namespace Ptlk_OPC
         {
             get
             {
-                if (m_OPC == null)
-                {
-                    return m_PingTimeout;
-                }
-                else
+                if (m_OPC != null)
                 {
                     return m_OPC.PingTimeout;
                 }
+                return m_PingTimeout;
             }
             set
             {
-                if (m_OPC == null)
-                {
-                    m_PingTimeout = value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.PingTimeout = value;
                 }
+                m_PingTimeout = value;
             }
         }
 
@@ -124,25 +101,19 @@ namespace Ptlk_OPC
         {
             get
             {
-                if (m_OPC == null)
-                {
-                    return m_ConnectRate;
-                }
-                else
+                if (m_OPC != null)
                 {
                     return m_OPC.ConnectRate;
                 }
+                return m_ConnectRate;
             }
             set
             {
-                if (m_OPC == null)
-                {
-                    m_ConnectRate = value;
-                }
-                else
+                if (m_OPC != null)
                 {
                     m_OPC.ConnectRate = value;
                 }
+                m_ConnectRate = value;
             }
         }
 
@@ -150,63 +121,37 @@ namespace Ptlk_OPC
         {
             get
             {
-                if (m_OPC == null)
-                {
-                    return false;
-                }
-                else
+                if (m_OPC != null)
                 {
                     return m_OPC.IsConnected;
+
                 }
+                return false;
             }
         }
 
         public void SetGroupItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
         {
-            if (m_OPC == null)
-            {
-                m_GroupItemID = ItemIDs;
-            }
-            else
-            {
-                m_OPC.SetGroupItemID(ref ItemIDs);
-            }
+            m_OPC?.SetGroupItemID(ref ItemIDs);
+            m_GroupItemID = ItemIDs;
         }
 
         public void SetMonitorItemID([MarshalAs(UnmanagedType.SafeArray)] ref string[] ItemIDs)
         {
-            if (m_OPC == null)
-            {
-                m_MonitorItemID = ItemIDs;
-            }
-            else
-            {
-                m_OPC.SetMonitorItemID(ref ItemIDs);
-            }
+            m_OPC?.SetMonitorItemID(ref ItemIDs);
+            m_MonitorItemID = ItemIDs;
         }
 
         public void StartMonitor()
         {
-            if (m_OPC == null)
-            {
-                m_IsMonitor = true;
-            }
-            else
-            {
-                m_OPC.StartMonitor();
-            }
+            m_OPC?.StartMonitor();
+            m_IsMonitor = true;
         }
 
         public void StopMonitor()
         {
-            if (m_OPC == null)
-            {
-                m_IsMonitor = false;
-            }
-            else
-            {
-                m_OPC.StopMonitor();
-            }
+            m_OPC?.StopMonitor();
+            m_IsMonitor = false;
         }
 
         public OPC()
@@ -215,9 +160,10 @@ namespace Ptlk_OPC
 
         public void Connect()
         {
-            if (ProgID == null || Node == null) return;
+            if (ProgID == null) throw new ArgumentNullException(nameof(ProgID));
+            if (Node == null) throw new ArgumentNullException(nameof(Node));
 
-            if (m_OPC != null) m_OPC.Disconnect();
+            m_OPC?.Disconnect();
 
             if (ProgID.Contains("XML"))
             {
@@ -228,13 +174,21 @@ namespace Ptlk_OPC
                 m_OPC = new OPC_DA();
             }
 
+            foreach (var d in m_DataChange)
+            {
+                m_OPC.DataChange += d;
+            }
+
+            foreach (var d in m_EventLog)
+            {
+                m_OPC.EventLog += d;
+            }
+
             m_OPC.ProgID = ProgID;
             m_OPC.Node = Node;
             m_OPC.UpdateRate = m_UpdateRate;
             m_OPC.PingTimeout = m_PingTimeout;
             m_OPC.ConnectRate = m_ConnectRate;
-            m_OPC.DataChange += m_DataChange;
-            m_OPC.EventLog += m_EventLog;
             m_OPC.SetGroupItemID(ref m_GroupItemID);
             m_OPC.SetMonitorItemID(ref m_MonitorItemID);
             if (m_IsMonitor) m_OPC.StartMonitor();
@@ -270,6 +224,8 @@ namespace Ptlk_OPC
         {
             m_OPC?.Disconnect();
             m_OPC = null;
+            m_DataChange.Clear();
+            m_EventLog.Clear();
         }
 
 
@@ -298,13 +254,11 @@ namespace Ptlk_OPC
         #endregion
 
         private IOPC m_OPC;
-        private event DataChangeHandler m_DataChange;
-        private event EventLogHandler m_EventLog;
+        private List<DataChangeHandler> m_DataChange;
+        private List<EventLogHandler> m_EventLog;
         private string[] m_GroupItemID;
         private string[] m_MonitorItemID;
         private bool m_IsMonitor;
-        private string m_ProgID;
-        private string m_Node;
         private int m_UpdateRate = 1000;
         private int m_PingTimeout = 5000;
         private int m_ConnectRate = 30000;
