@@ -74,7 +74,7 @@ namespace Ptlk_OPC
 
         public string GetValue(string ItemID)
         {
-            string result = null;
+            string result = "*";
 
             if (string.IsNullOrEmpty(ItemID)) return result;
 
@@ -98,7 +98,7 @@ namespace Ptlk_OPC
                     };
 
                     OPCServer1.Read(options, itemList, out var replyList, out _);
-                    var value = replyList.Items[0].Value ?? null;
+                    var value = replyList.Items[0].Value ?? "*";
                     result = value.ToString();
                 }
             }
@@ -112,7 +112,7 @@ namespace Ptlk_OPC
 
         public void SetValue(string ItemID, string Value)
         {
-            if (string.IsNullOrEmpty(ItemID) || string.IsNullOrEmpty(Value)) return;
+            if (string.IsNullOrEmpty(ItemID)) return;
 
             try
             {
@@ -161,7 +161,7 @@ namespace Ptlk_OPC
             {
                 for (int i = 0; i <= result.Length - 1; i++)
                 {
-                    result[i] = null;
+                    result[i] = "*";
                 }
 
                 if (!IsConnected) return result;
@@ -189,7 +189,7 @@ namespace Ptlk_OPC
                     OPCServer1.Read(options, itemList, out var replyList, out _);
                     for (int i = 0; i <= result.Length - 1; i++)
                     {
-                        result[i] = (replyList.Items[i].Value ?? null).ToString();
+                        result[i] = (replyList.Items[i].Value ?? "*").ToString();
                     }
                 }
             }
@@ -404,20 +404,30 @@ namespace Ptlk_OPC
 
         private void Timer2Callback(object state)
         {
-            if (OPCServer1 != null && ServerHandlesM != null)
+            try
             {
-                var options = new RequestOptions
+                if (OPCServer1 != null && ServerHandlesM != null)
                 {
-                    ReturnItemName = true,
-                    ReturnItemTime = true
-                };
+                    var options = new RequestOptions
+                    {
+                        ReturnItemName = true,
+                        ReturnItemTime = true
+                    };
 
-                OPCServer1.SubscriptionPolledRefresh(options, new[] { ServerHandlesM }, DateTime.MinValue
-                    , false, 0, false, out string[] invalidHandles, out var replyList, out _, out _);
+                    OPCServer1.SubscriptionPolledRefresh(options, new[] { ServerHandlesM }, DateTime.MinValue
+                        , false, 0, false, out string[] invalidHandles, out var replyList, out _, out _);
 
-                Publish(replyList);
+                    Publish(replyList);
+                }
             }
-            Timer2?.Change(UpdateRate, Timeout.Infinite);
+            catch (Exception ex)
+            {
+                Log($"{nameof(Timer2Callback)}: {ex.Message}{Environment.NewLine}{ex.StackTrace}");
+            }
+            finally
+            {
+                Timer2?.Change(UpdateRate, Timeout.Infinite);
+            }
         }
 
         private string GetTreeItemByBranches(ref string[] branches)

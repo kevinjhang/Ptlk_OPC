@@ -84,7 +84,7 @@ namespace Ptlk_OPC
 
         public string GetValue(string ItemID)
         {
-            string result = null;
+            string result = "*";
 
             if (string.IsNullOrEmpty(ItemID)) return result;
 
@@ -106,7 +106,7 @@ namespace Ptlk_OPC
                             if (OPCItem1 == null)
                             {
                                 OPCItem1 = OPCGroup1.OPCItems.AddItem(ItemID, 0);
-                            } 
+                            }
                         }
                         finally
                         {
@@ -122,7 +122,7 @@ namespace Ptlk_OPC
                                     }
                                     else
                                     {
-                                        result = null;
+                                        result = "*";
                                     }
                                 }
                             }
@@ -140,7 +140,7 @@ namespace Ptlk_OPC
 
         public void SetValue(string ItemID, string Value)
         {
-            if (string.IsNullOrEmpty(ItemID) || string.IsNullOrEmpty(Value)) return;
+            if (string.IsNullOrEmpty(ItemID)) return;
 
             try
             {
@@ -193,7 +193,7 @@ namespace Ptlk_OPC
             {
                 for (int i = 0; i <= result.Length - 1; i++)
                 {
-                    result[i] = null;
+                    result[i] = "*";
                 }
 
                 if (!IsConnected) return result;
@@ -235,7 +235,7 @@ namespace Ptlk_OPC
                                             }
                                             else
                                             {
-                                                result[i] = null;
+                                                result[i] = "*";
                                             }
                                         }
                                     }
@@ -698,7 +698,7 @@ namespace Ptlk_OPC
             {
                 if (IsBadQuality(Qualities.GetValue(i)))
                 {
-                    ItemValues.SetValue(null, i);
+                    ItemValues.SetValue("*", i);
                 }
             }
             DataChange?.Invoke(NumItems, ClientHandles, ItemValues, TimeStamps);
