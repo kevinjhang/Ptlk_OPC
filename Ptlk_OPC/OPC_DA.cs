@@ -501,7 +501,7 @@ namespace Ptlk_OPC
             catch (Exception ex)
             {
                 CheckConnected();
-                Log($"{nameof(AddItemID)}: {ex.Message} {nameof(ItemID)}: {ItemID}{Environment.NewLine}{ex.StackTrace}");
+                Log($"{nameof(AddItemID)}: {ex.Message} {nameof(ItemID)}: {string.Join(",", ItemID)}{Environment.NewLine}{ex.StackTrace}");
             }
             return false;
         }

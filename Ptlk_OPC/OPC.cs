@@ -12,6 +12,7 @@ namespace Ptlk_OPC
     [ClassInterface(ClassInterfaceType.None)]
     [ComSourceInterfaces(typeof(IOPCEvents))]
     [Guid("32030719-7F74-3953-A80D-5D70A16464BB")]
+    [ProgId("Ptlk_OPC.OPC")]
     public class OPC : IOPC, IDisposable
     {
         public event DataChangeHandler DataChange
@@ -227,7 +228,6 @@ namespace Ptlk_OPC
             m_DataChange.Clear();
             m_EventLog.Clear();
         }
-
 
         #region IDisposable Support
         private bool disposedValue = false;

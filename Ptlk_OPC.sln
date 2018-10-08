@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ptlk_OPCTests", "Ptlk_OPCTe
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ptlk_OPCSetup", "Ptlk_OPCSetup\Ptlk_OPCSetup.vdproj", "{84E80BD8-1C5D-4076-849A-DBAC340DD7F5}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ptlk_OPCMergeModule", "Ptlk_OPCMergeModule\Ptlk_OPCMergeModule.vdproj", "{E750E484-C00D-4D8D-99AE-F6E0BCAA0249}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -32,10 +30,6 @@ Global
 		{84E80BD8-1C5D-4076-849A-DBAC340DD7F5}.Debug|x86.Deploy.0 = Release
 		{84E80BD8-1C5D-4076-849A-DBAC340DD7F5}.Release|x86.ActiveCfg = Release
 		{84E80BD8-1C5D-4076-849A-DBAC340DD7F5}.Release|x86.Build.0 = Release
-		{E750E484-C00D-4D8D-99AE-F6E0BCAA0249}.Debug|x86.ActiveCfg = Release
-		{E750E484-C00D-4D8D-99AE-F6E0BCAA0249}.Debug|x86.Build.0 = Release
-		{E750E484-C00D-4D8D-99AE-F6E0BCAA0249}.Release|x86.ActiveCfg = Release
-		{E750E484-C00D-4D8D-99AE-F6E0BCAA0249}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
