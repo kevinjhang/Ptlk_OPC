@@ -374,7 +374,7 @@ namespace Ptlk_OPC
                     {
                         OPCServer1.OPCGroups.RemoveAll();
                         OPCServer1.Disconnect();
-                        Log($"{nameof(Disconnect)}ed: {Node} {ProgID}");
+                        Log($"{nameof(Disconnect)}ed");
                     }
                 }
 
@@ -414,7 +414,7 @@ namespace Ptlk_OPC
                 {
                     OPCServer1 = new OPCServer();
                     OPCServer1.Connect(ProgID, Node);
-                    Log($"{nameof(Connect)}ed: {Node} {ProgID}");
+                    Log($"{nameof(Connect)}ed");
                     OPCGroup1 = OPCServer1.OPCGroups.Add();
                     OPCGroupG = OPCServer1.OPCGroups.Add();
                     OPCGroupM = OPCServer1.OPCGroups.Add();
@@ -458,14 +458,14 @@ namespace Ptlk_OPC
                 {
                     IsPingSuccess = false;
                     OPCServer1 = null;
-                    Log($"{nameof(PingNode)}: {Node} {ping}");
+                    Log($"{nameof(PingNode)}: {ping}");
                 }
             }
             catch (PingException pex)
             {
                 IsPingSuccess = false;
                 OPCServer1 = null;
-                Log($"{nameof(CheckConnected)}: {pex.Message} {nameof(Node)}: {Node} {nameof(PingTimeout)}{PingTimeout}");
+                Log($"{nameof(CheckConnected)}: {pex.Message} {nameof(Node)}: {nameof(PingTimeout)}{PingTimeout}");
             }
             catch (ExternalException eex)
             {
@@ -706,7 +706,7 @@ namespace Ptlk_OPC
 
         private void Log(string Message)
         {
-            EventLog?.Invoke(Message);
+            EventLog?.Invoke($"{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} {Node} {ProgID} {Message}");
         }
 
         #region IDisposable Support

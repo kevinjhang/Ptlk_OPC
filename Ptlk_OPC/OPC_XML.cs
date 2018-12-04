@@ -335,7 +335,7 @@ namespace Ptlk_OPC
 
                 OPCServer1?.Dispose();
                 OPCServer1 = null;
-                Log($"{nameof(Disconnect)}ed: {Node} {ProgID}");
+                Log($"{nameof(Disconnect)}ed");
                 IsConnected = false;
             }
             catch (Exception ex)
@@ -359,7 +359,7 @@ namespace Ptlk_OPC
                     ServicePointManager.Expect100Continue = false;
                     OPCServer1.GetStatus("", "", out var status);
                     ServerStartTime = status.StartTime;
-                    Log($"{nameof(Connect)}ed: {Node} {ProgID}");
+                    Log($"{nameof(Connect)}ed");
                     IsConnected = true;
                     if (IsMonitor) StartMonitor();
                 }
@@ -544,7 +544,7 @@ namespace Ptlk_OPC
 
         private void Log(string Message)
         {
-            EventLog?.Invoke(Message);
+            EventLog?.Invoke($"{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} {Node} {ProgID} {Message}");
         }
 
         private Array CVarArrBase1(object[] Source)
